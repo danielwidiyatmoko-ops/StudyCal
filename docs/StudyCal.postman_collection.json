@@ -1,0 +1,304 @@
+{
+  "info": {
+    "name": "StudyCal API",
+    "description": "Complete API test collection for StudyCal. Import this file into Postman to test all endpoints.\n\nBase URL: http://localhost:5000/api\n\nAuth: After login or register, copy the token from the response and set it as the collection variable 'token'. All protected routes use Bearer token auth automatically.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:5000/api" },
+    { "key": "token",    "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/auth/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Budi Santoso\",\n  \"email\": \"budi@university.ac.id\",\n  \"password\": \"password123\"\n}"
+            },
+            "description": "P1.0 — Kelola Authentikasi: Register new student account. Copy the returned token into the collection variable."
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{base_url}}/auth/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"budi@university.ac.id\",\n  \"password\": \"password123\"\n}"
+            },
+            "description": "P1.0 — Kelola Authentikasi: Login with existing credentials."
+          }
+        },
+        {
+          "name": "Get current user",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/auth/me",
+            "description": "P1.0 — Verify JWT token is valid and returns user info."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "Get all courses",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/courses",
+            "description": "P2.0 — Kelola Kursus: Get all courses belonging to the logged-in student."
+          }
+        },
+        {
+          "name": "Create course",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type",  "value": "application/json" }
+            ],
+            "url": "{{base_url}}/courses",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"course_name\": \"Computer Networks\",\n  \"course_code\": \"IF3030\",\n  \"semester\":    \"Semester 6 2026\",\n  \"color_tag\":   \"#534AB7\"\n}"
+            },
+            "description": "P2.0 — Kelola Kursus: Create a new course for the logged-in student."
+          }
+        },
+        {
+          "name": "Update course",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type",  "value": "application/json" }
+            ],
+            "url": "{{base_url}}/courses/1",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"color_tag\": \"#1D9E75\"\n}"
+            },
+            "description": "P2.0 — Kelola Kursus: Update course fields."
+          }
+        },
+        {
+          "name": "Delete course",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/courses/1",
+            "description": "P2.0 — Kelola Kursus: Delete course and cascade-delete all rubrics and tasks."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rubrics",
+      "item": [
+        {
+          "name": "Get rubrics for course",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/rubrics/course/1",
+            "description": "P2.0 — Kelola Kursus: Get all rubric components for a specific course."
+          }
+        },
+        {
+          "name": "Add rubric component",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type",  "value": "application/json" }
+            ],
+            "url": "{{base_url}}/rubrics",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"course_id\":      1,\n  \"component_name\": \"Midterm Exam\",\n  \"weight_percent\":  35,\n  \"category_id\":     3\n}"
+            },
+            "description": "P2.0 — Kelola Kursus: Add a rubric component to a course. category_id is optional."
+          }
+        },
+        {
+          "name": "Update rubric component",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type",  "value": "application/json" }
+            ],
+            "url": "{{base_url}}/rubrics/1",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"weight_percent\": 40\n}"
+            },
+            "description": "P2.0 — Kelola Kursus: Update a rubric component."
+          }
+        },
+        {
+          "name": "Delete rubric component",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/rubrics/1",
+            "description": "P2.0 — Kelola Kursus: Delete a rubric component."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get all categories",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/categories",
+            "description": "Get pre-seeded task categories: Homework, Online Quiz, Exam, Project, Lab Report."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Get all tasks (priority sorted)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/tasks",
+            "description": "P3.0 — Kelola Tugas: Get all tasks for the logged-in student, sorted by priority_score descending."
+          }
+        },
+        {
+          "name": "Get tasks for calendar (by month)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/tasks/calendar?year=2026&month=5",
+              "query": [
+                { "key": "year",  "value": "2026" },
+                { "key": "month", "value": "5" }
+              ]
+            },
+            "description": "P3.0 — Kelola Tugas: Get tasks filtered to a specific year and month for the calendar view."
+          }
+        },
+        {
+          "name": "Create task",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type",  "value": "application/json" }
+            ],
+            "url": "{{base_url}}/tasks",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\":             \"Midterm Exam — Computer Networks\",\n  \"course_id\":         1,\n  \"rubric_id\":         1,\n  \"category_id\":       3,\n  \"due_date\":          \"2026-05-20T10:00\",\n  \"estimated_minutes\": 180,\n  \"description\":       \"Covers OSI model, TCP/IP, routing protocols.\"\n}"
+            },
+            "description": "P3.0 — Kelola Tugas: Create a task. priority_score is calculated automatically. 3 notifications are auto-scheduled."
+          }
+        },
+        {
+          "name": "Update task",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type",  "value": "application/json" }
+            ],
+            "url": "{{base_url}}/tasks/1",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estimated_minutes\": 200,\n  \"description\":       \"Updated: also covers VLAN and subnetting.\"\n}"
+            },
+            "description": "P3.0 — Kelola Tugas: Update task fields. Priority is recalculated automatically."
+          }
+        },
+        {
+          "name": "Mark task complete (toggle)",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/tasks/1/complete",
+            "description": "P3.0 — Kelola Tugas: Toggle is_completed on a task. Calling again un-completes it."
+          }
+        },
+        {
+          "name": "Delete task",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/tasks/1",
+            "description": "P3.0 — Kelola Tugas: Delete a task and cascade-delete its notifications."
+          }
+        },
+        {
+          "name": "Import ICS file",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/tasks/import-ics",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "file",      "type": "file",  "src":   "" },
+                { "key": "course_id", "type": "text",  "value": "1" }
+              ]
+            },
+            "description": "P3.0 — Kelola Tugas: Upload a .ics file to import events as tasks. Set course_id to assign all imported tasks to a course."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Get all notifications",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/notifications",
+            "description": "P3.0 — Kelola Tugas: Get all notifications for the logged-in student's tasks."
+          }
+        },
+        {
+          "name": "Get pending notifications (poll)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/notifications/pending",
+            "description": "P3.0 — Kelola Tugas: Get unsent notifications that are due now. Marks them as sent automatically. Called every 60s by the frontend."
+          }
+        },
+        {
+          "name": "Acknowledge notification",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": "{{base_url}}/notifications/1/acknowledge",
+            "description": "P3.0 — Kelola Tugas: Mark a notification as acknowledged (dismissed by the student)."
+          }
+        }
+      ]
+    }
+  ]
+}
