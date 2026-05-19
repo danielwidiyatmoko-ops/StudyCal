@@ -1,0 +1,2015 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "StudyCal API",
+    "version": "1.0.0",
+    "description": "Complete API test collection for StudyCal.\n\nBase URL: [http://localhost:5000/api](http://localhost:5000/api)\n\nAuth: After login or register, copy the token from the response and set it as the collection variable 'token'. All protected routes use Bearer token auth automatically."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "summary": "Register",
+        "responses": {
+          "201": {
+            "description": "Register",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 13:19:40 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 473
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "created_at": {
+                          "type": "string",
+                          "format": "style"
+                        },
+                        "email": {
+                          "type": "string",
+                          "format": "email"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "user_id": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3OTExMDM4MCwianRpIjoiZjMyMTgwYTItOWI4Zi00MTRkLWFiOWEtODEzOTg4ZjAzMjcwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NzkxMTAzODAsImNzcmYiOiJlZmI4YzJjYi0xYzFjLTRiNDUtODJjYS04ODFlNTE3ZjU2Y2EifQ.koP_WPWpWGXnAsg5jwBvo4MlUnFEI-lDSu2n2H1cICs",
+                  "user": {
+                    "created_at": "2026-05-18T13:19:40.398579",
+                    "email": "dan.sal@institution.edu.jp",
+                    "name": "Dan Salvato",
+                    "user_id": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Auth"
+        ],
+        "description": "P1.0 — Kelola Authentikasi: Register new student account. Copy the returned token into the collection variable."
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Login",
+        "responses": {
+          "200": {
+            "description": "Login",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 13:24:47 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 473
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "created_at": {
+                          "type": "string",
+                          "format": "style"
+                        },
+                        "email": {
+                          "type": "string",
+                          "format": "email"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "user_id": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3OTExMDY4NywianRpIjoiOGEzZGViZWYtMGM2Ny00ZDM3LTgxMmEtOTQwZGMxYTgzYzA4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NzkxMTA2ODcsImNzcmYiOiI3NDZmYTRhMC0yYjNhLTQyMmItYmQ0ZC03MDE5YmEyN2MzZGYifQ.8T_v6nKxrYva6fWBhukfPq8ipcQyIFq2wr-EBmYuQTs",
+                  "user": {
+                    "created_at": "2026-05-18T13:19:40.398579",
+                    "email": "dan.sal@institution.edu.jp",
+                    "name": "Dan Salvato",
+                    "user_id": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Auth"
+        ],
+        "description": "P1.0 — Kelola Authentikasi: Login with existing credentials."
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "summary": "Get current user",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get current user",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:09:14 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 131
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "created_at": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "example": {
+                  "created_at": "2026-05-18T13:19:40.398579",
+                  "email": "dan.sal@institution.edu.jp",
+                  "name": "Dan Salvato",
+                  "user_id": 1
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Auth"
+        ],
+        "description": "P1.0 — Verify JWT token is valid and returns user info."
+      }
+    },
+    "/courses": {
+      "get": {
+        "summary": "Get all courses",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get all courses",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:40:39 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 359
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "color_tag": {
+                        "type": "string",
+                        "format": "color"
+                      },
+                      "course_code": {
+                        "type": "string"
+                      },
+                      "course_id": {
+                        "type": "integer"
+                      },
+                      "course_name": {
+                        "type": "string"
+                      },
+                      "semester": {
+                        "type": "string"
+                      },
+                      "user_id": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "color_tag": "#1D9E75",
+                    "course_code": "IF3030",
+                    "course_id": 1,
+                    "course_name": "Computer Networks",
+                    "semester": "Semester 6 2026",
+                    "user_id": 1
+                  },
+                  {
+                    "color_tag": "#aaaaaa",
+                    "course_code": "IF3030",
+                    "course_id": 2,
+                    "course_name": "Computer Networks",
+                    "semester": "Semester 6 2026",
+                    "user_id": 1
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Courses"
+        ],
+        "description": "P2.0 — Kelola Kursus: Get all courses belonging to the logged-in student."
+      },
+      "post": {
+        "summary": "Create course",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Create course",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:10:38 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 161
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "color_tag": {
+                      "type": "string",
+                      "format": "color"
+                    },
+                    "course_code": {
+                      "type": "string"
+                    },
+                    "course_id": {
+                      "type": "integer"
+                    },
+                    "course_name": {
+                      "type": "string"
+                    },
+                    "semester": {
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "example": {
+                  "color_tag": "#534AB7",
+                  "course_code": "IF3030",
+                  "course_id": 2,
+                  "course_name": "Computer Networks",
+                  "semester": "Semester 6 2026",
+                  "user_id": 1
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Courses"
+        ],
+        "description": "P2.0 — Kelola Kursus: Create a new course for the logged-in student."
+      }
+    },
+    "/courses/1": {
+      "put": {
+        "summary": "Update course",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update course",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:40:28 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 161
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "color_tag": {
+                      "type": "string",
+                      "format": "color"
+                    },
+                    "course_code": {
+                      "type": "string"
+                    },
+                    "course_id": {
+                      "type": "integer"
+                    },
+                    "course_name": {
+                      "type": "string"
+                    },
+                    "semester": {
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "example": {
+                  "color_tag": "#aaaaaa",
+                  "course_code": "IF3030",
+                  "course_id": 2,
+                  "course_name": "Computer Networks",
+                  "semester": "Semester 6 2026",
+                  "user_id": 1
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Courses"
+        ],
+        "description": "P2.0 — Kelola Kursus: Update course fields."
+      },
+      "delete": {
+        "summary": "Delete course",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete course",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:40:54 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 34
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Course deleted"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Courses"
+        ],
+        "description": "P2.0 — Kelola Kursus: Delete course and cascade-delete all rubrics and tasks."
+      }
+    },
+    "/rubrics/course/1": {
+      "get": {
+        "summary": "Get rubrics for course",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get rubrics for course",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:53:58 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 139
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "category_id": {
+                        "type": "integer"
+                      },
+                      "component_name": {
+                        "type": "string"
+                      },
+                      "course_id": {
+                        "type": "integer"
+                      },
+                      "rubric_id": {
+                        "type": "integer"
+                      },
+                      "weight_percent": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "category_id": 3,
+                    "component_name": "Midterm Exam",
+                    "course_id": 1,
+                    "rubric_id": 1,
+                    "weight_percent": 40
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Rubrics"
+        ],
+        "description": "P2.0 — Kelola Kursus: Get all rubric components for a specific course."
+      }
+    },
+    "/rubrics": {
+      "post": {
+        "summary": "Add rubric component",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Add rubric component",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:53:32 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 121
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "category_id": {
+                      "type": "integer"
+                    },
+                    "component_name": {
+                      "type": "string"
+                    },
+                    "course_id": {
+                      "type": "integer"
+                    },
+                    "rubric_id": {
+                      "type": "integer"
+                    },
+                    "weight_percent": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "example": {
+                  "category_id": 3,
+                  "component_name": "Midterm Exam",
+                  "course_id": 1,
+                  "rubric_id": 1,
+                  "weight_percent": 35
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Rubrics"
+        ],
+        "description": "P2.0 — Kelola Kursus: Add a rubric component to a course. category_id is optional."
+      }
+    },
+    "/rubrics/1": {
+      "put": {
+        "summary": "Update rubric component",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update rubric component",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:53:45 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 121
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "category_id": {
+                      "type": "integer"
+                    },
+                    "component_name": {
+                      "type": "string"
+                    },
+                    "course_id": {
+                      "type": "integer"
+                    },
+                    "rubric_id": {
+                      "type": "integer"
+                    },
+                    "weight_percent": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "example": {
+                  "category_id": 3,
+                  "component_name": "Midterm Exam",
+                  "course_id": 1,
+                  "rubric_id": 1,
+                  "weight_percent": 40
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Rubrics"
+        ],
+        "description": "P2.0 — Kelola Kursus: Update a rubric component."
+      },
+      "delete": {
+        "summary": "Delete rubric component",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete rubric component",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:54:06 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 34
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Rubric deleted"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Rubrics"
+        ],
+        "description": "P2.0 — Kelola Kursus: Delete a rubric component."
+      }
+    },
+    "/categories": {
+      "get": {
+        "summary": "Get all categories",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get all categories",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:54:17 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 273
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "category_id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "category_id": 3,
+                    "name": "Exam"
+                  },
+                  {
+                    "category_id": 1,
+                    "name": "Homework"
+                  },
+                  {
+                    "category_id": 5,
+                    "name": "Lab Report"
+                  },
+                  {
+                    "category_id": 2,
+                    "name": "Online Quiz"
+                  },
+                  {
+                    "category_id": 4,
+                    "name": "Project"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Categories"
+        ],
+        "description": "Get pre-seeded task categories: Homework, Online Quiz, Exam, Project, Lab Report."
+      }
+    },
+    "/tasks": {
+      "get": {
+        "summary": "Get all tasks (priority sorted)",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get all tasks (priority sorted)",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:59:50 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 546
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "category": {
+                        "type": "string"
+                      },
+                      "category_id": {
+                        "type": "integer"
+                      },
+                      "color_tag": {
+                        "type": "string",
+                        "format": "color"
+                      },
+                      "course_id": {
+                        "type": "integer"
+                      },
+                      "course_name": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "format": "style"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "due_date": {
+                        "type": "string",
+                        "format": "style"
+                      },
+                      "estimated_minutes": {
+                        "type": "integer"
+                      },
+                      "is_completed": {
+                        "type": "boolean"
+                      },
+                      "priority_score": {
+                        "type": "integer"
+                      },
+                      "rubric_component": {
+                        "nullable": true
+                      },
+                      "rubric_id": {
+                        "type": "integer"
+                      },
+                      "task_id": {
+                        "type": "integer"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "user_id": {
+                        "type": "integer"
+                      },
+                      "weight_percent": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "category": "Exam",
+                    "category_id": 3,
+                    "color_tag": "#aaaaaa",
+                    "course_id": 1,
+                    "course_name": "Computer Networks",
+                    "created_at": "2026-05-18T14:58:38.784572",
+                    "description": "Updated: also covers VLAN and subnetting.",
+                    "due_date": "2026-05-20T10:00:00",
+                    "estimated_minutes": 200,
+                    "is_completed": false,
+                    "priority_score": 30,
+                    "rubric_component": null,
+                    "rubric_id": 1,
+                    "task_id": 1,
+                    "title": "Midterm Exam — Computer Networks",
+                    "user_id": 1,
+                    "weight_percent": 0
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Tasks"
+        ],
+        "description": "P3.0 — Kelola Tugas: Get all tasks for the logged-in student, sorted by priority_score descending."
+      },
+      "post": {
+        "summary": "Create task",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Create task",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:58:38 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 507
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "category": {
+                      "type": "string"
+                    },
+                    "category_id": {
+                      "type": "integer"
+                    },
+                    "color_tag": {
+                      "type": "string",
+                      "format": "color"
+                    },
+                    "course_id": {
+                      "type": "integer"
+                    },
+                    "course_name": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "due_date": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "estimated_minutes": {
+                      "type": "integer"
+                    },
+                    "is_completed": {
+                      "type": "boolean"
+                    },
+                    "priority_score": {
+                      "type": "integer"
+                    },
+                    "rubric_component": {
+                      "nullable": true
+                    },
+                    "rubric_id": {
+                      "type": "integer"
+                    },
+                    "task_id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    },
+                    "weight_percent": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "example": {
+                  "category": "Exam",
+                  "category_id": 3,
+                  "color_tag": "#aaaaaa",
+                  "course_id": 1,
+                  "course_name": "Computer Networks",
+                  "created_at": "2026-05-18T14:58:38.784572",
+                  "description": "Covers OSI model, TCP/IP, routing protocols.",
+                  "due_date": "2026-05-20T10:00:00",
+                  "estimated_minutes": 180,
+                  "is_completed": false,
+                  "priority_score": 30,
+                  "rubric_component": null,
+                  "rubric_id": 1,
+                  "task_id": 1,
+                  "title": "Midterm Exam — Computer Networks",
+                  "user_id": 1,
+                  "weight_percent": 0
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Tasks"
+        ],
+        "description": "P3.0 — Kelola Tugas: Create a task. priority_score is calculated automatically. 3 notifications are auto-scheduled."
+      }
+    },
+    "/tasks/1": {
+      "put": {
+        "summary": "Update task",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update task",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 14:58:51 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 504
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "category": {
+                      "type": "string"
+                    },
+                    "category_id": {
+                      "type": "integer"
+                    },
+                    "color_tag": {
+                      "type": "string",
+                      "format": "color"
+                    },
+                    "course_id": {
+                      "type": "integer"
+                    },
+                    "course_name": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "due_date": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "estimated_minutes": {
+                      "type": "integer"
+                    },
+                    "is_completed": {
+                      "type": "boolean"
+                    },
+                    "priority_score": {
+                      "type": "integer"
+                    },
+                    "rubric_component": {
+                      "nullable": true
+                    },
+                    "rubric_id": {
+                      "type": "integer"
+                    },
+                    "task_id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    },
+                    "weight_percent": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "example": {
+                  "category": "Exam",
+                  "category_id": 3,
+                  "color_tag": "#aaaaaa",
+                  "course_id": 1,
+                  "course_name": "Computer Networks",
+                  "created_at": "2026-05-18T14:58:38.784572",
+                  "description": "Updated: also covers VLAN and subnetting.",
+                  "due_date": "2026-05-20T10:00:00",
+                  "estimated_minutes": 200,
+                  "is_completed": false,
+                  "priority_score": 30,
+                  "rubric_component": null,
+                  "rubric_id": 1,
+                  "task_id": 1,
+                  "title": "Midterm Exam — Computer Networks",
+                  "user_id": 1,
+                  "weight_percent": 0
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Tasks"
+        ],
+        "description": "P3.0 — Kelola Tugas: Update task fields. Priority is recalculated automatically."
+      },
+      "delete": {
+        "summary": "Delete task",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete task",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 15:01:31 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 32
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Task deleted"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Tasks"
+        ],
+        "description": "P3.0 — Kelola Tugas: Delete a task and cascade-delete its notifications."
+      }
+    },
+    "/tasks/1/complete": {
+      "patch": {
+        "summary": "Mark task complete (toggle)",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Mark task complete (toggle)",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 15:00:08 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 503
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "category": {
+                      "type": "string"
+                    },
+                    "category_id": {
+                      "type": "integer"
+                    },
+                    "color_tag": {
+                      "type": "string",
+                      "format": "color"
+                    },
+                    "course_id": {
+                      "type": "integer"
+                    },
+                    "course_name": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "due_date": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "estimated_minutes": {
+                      "type": "integer"
+                    },
+                    "is_completed": {
+                      "type": "boolean"
+                    },
+                    "priority_score": {
+                      "type": "integer"
+                    },
+                    "rubric_component": {
+                      "nullable": true
+                    },
+                    "rubric_id": {
+                      "type": "integer"
+                    },
+                    "task_id": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "type": "integer"
+                    },
+                    "weight_percent": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "example": {
+                  "category": "Exam",
+                  "category_id": 3,
+                  "color_tag": "#aaaaaa",
+                  "course_id": 1,
+                  "course_name": "Computer Networks",
+                  "created_at": "2026-05-18T14:58:38.784572",
+                  "description": "Updated: also covers VLAN and subnetting.",
+                  "due_date": "2026-05-20T10:00:00",
+                  "estimated_minutes": 200,
+                  "is_completed": true,
+                  "priority_score": 30,
+                  "rubric_component": null,
+                  "rubric_id": 1,
+                  "task_id": 1,
+                  "title": "Midterm Exam — Computer Networks",
+                  "user_id": 1,
+                  "weight_percent": 0
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Tasks"
+        ],
+        "description": "P3.0 — Kelola Tugas: Toggle is_completed on a task. Calling again un-completes it."
+      }
+    },
+    "/tasks/import-ics": {
+      "post": {
+        "summary": "Import ICS file",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Tasks"
+        ],
+        "description": "P3.0 — Kelola Tugas: Upload a .ics file to import events as tasks. Set course_id to assign all imported tasks to a course."
+      }
+    },
+    "/notifications": {
+      "get": {
+        "summary": "Get all notifications",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get all notifications",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 15:07:35 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 996
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "color_tag": {
+                        "type": "string",
+                        "format": "color"
+                      },
+                      "course_name": {
+                        "type": "string"
+                      },
+                      "due_date": {
+                        "type": "string",
+                        "format": "style"
+                      },
+                      "is_acknowledged": {
+                        "type": "boolean"
+                      },
+                      "is_sent": {
+                        "type": "boolean"
+                      },
+                      "notif_id": {
+                        "type": "integer"
+                      },
+                      "notify_at": {
+                        "type": "string"
+                      },
+                      "priority_score": {
+                        "type": "integer"
+                      },
+                      "task_id": {
+                        "type": "integer"
+                      },
+                      "task_title": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "color_tag": "#aaaaaa",
+                    "course_name": "Computer Networks",
+                    "due_date": "2026-05-20T10:00:00",
+                    "is_acknowledged": false,
+                    "is_sent": false,
+                    "notif_id": 3,
+                    "notify_at": "2026-05-20T09:30:00",
+                    "priority_score": 30,
+                    "task_id": 1,
+                    "task_title": "Midterm Exam — Computer Networks"
+                  },
+                  {
+                    "color_tag": "#aaaaaa",
+                    "course_name": "Computer Networks",
+                    "due_date": "2026-05-20T10:00:00",
+                    "is_acknowledged": false,
+                    "is_sent": false,
+                    "notif_id": 2,
+                    "notify_at": "2026-05-20T07:00:00",
+                    "priority_score": 30,
+                    "task_id": 1,
+                    "task_title": "Midterm Exam — Computer Networks"
+                  },
+                  {
+                    "color_tag": "#aaaaaa",
+                    "course_name": "Computer Networks",
+                    "due_date": "2026-05-20T10:00:00",
+                    "is_acknowledged": false,
+                    "is_sent": false,
+                    "notif_id": 1,
+                    "notify_at": "2026-05-19T10:00:00",
+                    "priority_score": 30,
+                    "task_id": 1,
+                    "task_title": "Midterm Exam — Computer Networks"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "tags": [
+          "Notifications"
+        ],
+        "description": "P3.0 — Kelola Tugas: Get all notifications for the logged-in student's tasks."
+      }
+    },
+    "/notifications/pending": {
+      "get": {
+        "summary": "Get pending notifications (poll)",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get pending notifications (poll)",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 15:07:58 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 3
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                },
+                "example": []
+              }
+            }
+          }
+        },
+        "tags": [
+          "Notifications"
+        ],
+        "description": "P3.0 — Kelola Tugas: Get unsent notifications that are due now. Marks them as sent automatically. Called every 60s by the frontend."
+      }
+    },
+    "/notifications/1/acknowledge": {
+      "patch": {
+        "summary": "Acknowledge notification",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Acknowledge notification",
+            "headers": {
+              "server": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Werkzeug/3.0.3 Python/3.13.13"
+              },
+              "date": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "Mon, 18 May 2026 15:08:25 GMT"
+              },
+              "content-length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 305
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "http://localhost:5173"
+              },
+              "connection": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "close"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "color_tag": {
+                      "type": "string",
+                      "format": "color"
+                    },
+                    "course_name": {
+                      "type": "string"
+                    },
+                    "due_date": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "is_acknowledged": {
+                      "type": "boolean"
+                    },
+                    "is_sent": {
+                      "type": "boolean"
+                    },
+                    "notif_id": {
+                      "type": "integer"
+                    },
+                    "notify_at": {
+                      "type": "string"
+                    },
+                    "priority_score": {
+                      "type": "integer"
+                    },
+                    "task_id": {
+                      "type": "integer"
+                    },
+                    "task_title": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "color_tag": "#aaaaaa",
+                  "course_name": "Computer Networks",
+                  "due_date": "2026-05-20T10:00:00",
+                  "is_acknowledged": true,
+                  "is_sent": false,
+                  "notif_id": 1,
+                  "notify_at": "2026-05-19T10:00:00",
+                  "priority_score": 30,
+                  "task_id": 1,
+                  "task_title": "Midterm Exam — Computer Networks"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Notifications"
+        ],
+        "description": "P3.0 — Kelola Tugas: Mark a notification as acknowledged (dismissed by the student)."
+      }
+    }
+  }
+}
