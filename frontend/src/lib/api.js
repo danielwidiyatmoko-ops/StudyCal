@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: '/api' })
+// In production VITE_API_URL points to the Oracle Cloud backend.
+// In local dev it falls back to '/api' which Vite proxies to localhost:5000.
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || '/api'
+})
 
 // Attach JWT token to every request
 api.interceptors.request.use(cfg => {
@@ -9,7 +13,7 @@ api.interceptors.request.use(cfg => {
   return cfg
 })
 
-// On 401, clear token and reload to login
+// On 401, clear token and redirect to login
 api.interceptors.response.use(
   res => res,
   err => {
