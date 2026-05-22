@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyCal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        /* Brand */
+        --purple:       #534AB7;
+        --purple-hover: #4740A3;
+        --purple-light: #EEEDFE;
+        --purple-dark:  #3C3489;
+        --teal:         #1D9E75;
+        --teal-light:   #E1F5EE;
+        --teal-dark:    #085041;
+        --coral:        #D85A30;
+        --coral-light:  #FAECE7;
+        --amber:        #BA7517;
+        --amber-light:  #FAEEDA;
+        --red:          #B53030;
+        --red-light:    #FCEBEB;
+        --green:        #3B6D11;
+        --green-light:  #EAF3DE;
+
+        /* Neutrals */
+        --gray-50:  #FAFAF8;
+        --gray-100: #F4F3EF;
+        --gray-200: #E8E6DF;
+        --gray-300: #D1CEC4;
+        --gray-400: #A8A59A;
+        --gray-500: #737069;
+        --gray-600: #504E48;
+        --gray-700: #3A3834;
+        --gray-800: #252420;
+        --gray-900: #141310;
+
+        /* Semantic */
+        --bg:         #FAFAF8;
+        --bg-subtle:  #F4F3EF;
+        --border:     #E8E6DF;
+        --border-mid: #D1CEC4;
+        --text:       #252420;
+        --text-2:     #504E48;
+        --text-3:     #737069;
+        --text-4:     #A8A59A;
+
+        /* Typography */
+        --font:      'DM Sans', system-ui, sans-serif;
+        --font-mono: 'DM Mono', monospace;
+
+        /* Radii */
+        --r-sm: 6px;
+        --r-md: 10px;
+        --r-lg: 14px;
+        --r-xl: 20px;
+
+        /* Shadows */
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+        --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+        --shadow-lg: 0 12px 32px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.04);
+      }
+
+      html, body, #root {
+        height: 100%;
+        font-family: var(--font);
+        font-size: 14px;
+        color: var(--text);
+        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      button, input, select, textarea { font-family: var(--font); }
+      a { text-decoration: none; color: inherit; }
+      button { cursor: pointer; }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
