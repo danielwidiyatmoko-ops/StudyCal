@@ -2,13 +2,16 @@
 
 A student calendar web application for managing academic tasks across multiple courses, with automatic priority scoring based on grade weight and deadline proximity.
 
-Built as a final project for the Implementation and Testing of Software course by Daniel.W.
+Built as a final project for the Implementation and Testing of Software (IMPAL) course.
 
 ---
 ## Members
 
 1. Benedictus D W. (103012400209)
-thats it... this is a solo project...
+
+thats it... this is a solo project... by one person...
+
+have mercy please...
 
 ---
 ## Tech Stack
@@ -17,9 +20,9 @@ thats it... this is a solo project...
 |---|---|
 | Frontend | React 18 + Vite |
 | Backend | Python 3 + Flask |
-| Database | SQLite (local) / PostgreSQL (production) |
+| Database | SQLite |
 | Auth | JWT (JSON Web Tokens) |
-| Hosting | Vercel (frontend) + Oracle Cloud (backend) |
+| Hosting | Vercel (frontend) + Render (backend) |
 
 ---
 ## Diagrams
@@ -108,7 +111,7 @@ Base URL (local): `http://localhost:5000/api`
 ## Deployment
 
 - Frontend: Vercel — connect GitHub repo, set root to `frontend/`
-- Backend: Oracle Cloud Free Tier — see `docs/deployment.md`
+- Backend: Render
 
 ---
 
