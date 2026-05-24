@@ -15,13 +15,32 @@ export default function Layout() {
   const { user, logout } = useAuth()
   const navigate         = useNavigate()
   const [unread, setUnread] = useState(0)
-
+  
+  // Request browser notification permission on mount
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission()
+    }
+  }, [])
+  
   // Poll for pending notifications every 60s
   useEffect(() => {
     const poll = async () => {
       try {
         const r = await api.get('/notifications/pending')
-        if (r.data.length) setUnread(n => n + r.data.length)
+        if (r.data.length) {
+          setUnread(n => n + r.data.length)
+
+          // Show a browser push notification for each one
+          if ('Notification' in window && Notification.permission === 'granted') {
+            r.data.forEach(n => {
+              new Notification(`📅 StudyCal — Task Due Soon`, {
+                body: `${n.task_title} (${n.course_name})`,
+                icon: '/favicon.svg',
+              })
+            })
+          }
+        }
       } catch (_) {}
     }
     poll()
