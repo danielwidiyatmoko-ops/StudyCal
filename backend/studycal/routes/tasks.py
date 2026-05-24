@@ -193,6 +193,7 @@ def import_ics():
         db.session.add(task)
         db.session.flush()
         _recalc(task)
+        _auto_notify(task)
         created.append(task.to_dict())
 
     db.session.commit()
