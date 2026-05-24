@@ -20,7 +20,7 @@ have mercy please...
 |---|---|
 | Frontend | React 18 + Vite |
 | Backend | Python 3 + Flask |
-| Database | SQLite |
+| Database | SQLite (local), PosgreSQL (hosting)|
 | Auth | JWT (JSON Web Tokens) |
 | Hosting | Vercel (frontend) + Render (backend) |
 
