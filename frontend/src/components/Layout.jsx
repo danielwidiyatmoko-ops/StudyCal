@@ -69,7 +69,7 @@ export default function Layout() {
 
         {/* Logo */}
         <div style={{ padding: '20px 18px 16px', borderBottom: '1px solid var(--border)' }}>
-          <img src="/favicon.svg" alt="StudyCal" style={{ height: 28 }} />
+          <img src="/Logo_Dark.svg" alt="StudyCal" style={{ height: 28 }} />
         </div>
 
         {/* Nav */}

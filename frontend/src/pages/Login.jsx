@@ -29,7 +29,7 @@ export default function Login() {
       <div style={{ width: 380 }}>
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <img src="/favicon.svg" alt="StudyCal" style={{ height: 40, marginBottom: 12 }} />
+          <img src="/Logo_Dark.svg" alt="StudyCal" style={{ height: 40, marginBottom: 12 }} />
           <h1 style={{ fontSize: 22, fontWeight: 600, letterSpacing: '-.02em' }}>Welcome back</h1>
           <p style={{ fontSize: 13, color: 'var(--text-3)', marginTop: 4 }}>Sign in to your StudyCal account</p>
         </div>
