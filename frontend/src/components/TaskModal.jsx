@@ -36,8 +36,10 @@ export default function TaskModal({ task, onClose, onSaved }) {
   const submit = async e => {
     e.preventDefault()
     setBusy(true); setError('')
+    const dueDateISO = form.due_date ? new Date(form.due_date).toISOString() : null
     const payload = {
       ...form,
+      due_date:          dueDateISO,
       rubric_id:         form.rubric_id         || null,
       category_id:       form.category_id       || null,
       estimated_minutes: form.estimated_minutes ? parseInt(form.estimated_minutes) : null,
