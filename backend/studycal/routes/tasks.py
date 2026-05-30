@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from .. import db
 from ..models import Task, Course, Rubric, Notification
 from ..priority import calculate_priority
@@ -12,7 +12,19 @@ tasks_bp = Blueprint("tasks", __name__)
 # ── Helpers ───────────────────────────────────────────────────
 
 def _parse_dt(s):
-    for fmt in ("%Y-%m-%dT%H:%M", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%d"):
+    # Handle ISO 8601 with Z suffix (UTC) sent by frontend
+    if s.endswith('Z'):
+        s = s[:-1] + '+00:00'
+    # Handle ISO 8601 with timezone offset
+    if '+' in s[10:] or s.count('-') > 2:
+        try:
+            aware = datetime.fromisoformat(s)
+            return aware.astimezone(timezone.utc).replace(tzinfo=None)
+        except ValueError:
+            pass
+    # Fallback for plain strings (Postman testing without timezone)
+    for fmt in ("%Y-%m-%dT%H:%M:%S.%f", "%Y-%m-%dT%H:%M:%S",
+                "%Y-%m-%dT%H:%M", "%Y-%m-%d"):
         try:
             return datetime.strptime(s, fmt)
         except ValueError:
@@ -29,13 +41,12 @@ def _recalc(task):
 def _auto_notify(task):
     """Schedule 3 notifications: 1 day, 3 hours, 30 minutes before due."""
     Notification.query.filter_by(task_id=task.task_id).delete()
-    now     = datetime.utcnow()
+    now     = datetime.now(timezone.utc).replace(tzinfo=None)
     offsets = [timedelta(days=1), timedelta(hours=3), timedelta(minutes=30)]
     for offset in offsets:
         notify_at = task.due_date - offset
         if notify_at > now:
             db.session.add(Notification(task_id=task.task_id, notify_at=notify_at))
-
 
 # ── Routes ────────────────────────────────────────────────────
 
@@ -54,8 +65,8 @@ def get_tasks():
 @jwt_required()
 def get_calendar():
     uid   = int(get_jwt_identity())
-    year  = request.args.get("year",  type=int, default=datetime.utcnow().year)
-    month = request.args.get("month", type=int, default=datetime.utcnow().month)
+    year  = request.args.get("year",  type=int, default=datetime.now(timezone.utc).replace(tzinfo=None).year)
+    month = request.args.get("month", type=int, default=datetime.now(timezone.utc).replace(tzinfo=None).month)
     start = datetime(year, month, 1)
     end   = datetime(year + 1, 1, 1) if month == 12 else datetime(year, month + 1, 1)
 

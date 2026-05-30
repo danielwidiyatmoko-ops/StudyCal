@@ -1,5 +1,5 @@
 from . import db
-from datetime import datetime
+from datetime import datetime,timezone
 
 
 class User(db.Model):
@@ -8,7 +8,7 @@ class User(db.Model):
     name          = db.Column(db.String(100),  nullable=False)
     email         = db.Column(db.String(150),  nullable=False, unique=True)
     password_hash = db.Column(db.String(255),  nullable=False)
-    created_at    = db.Column(db.DateTime,     default=datetime.utcnow)
+    created_at    = db.Column(db.DateTime,     default=lambda: datetime.now(timezone.utc).replace(tzinfo=None))
 
     courses       = db.relationship("Course",  backref="owner", cascade="all, delete", lazy=True)
     tasks         = db.relationship("Task",    backref="owner", cascade="all, delete", lazy=True)
@@ -87,7 +87,7 @@ class Task(db.Model):
     estimated_minutes = db.Column(db.Integer,  nullable=True)
     priority_score    = db.Column(db.Float,    nullable=True)
     is_completed      = db.Column(db.Boolean,  default=False, nullable=False)
-    created_at        = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at        = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None))
 
     notifications     = db.relationship("Notification", backref="task", cascade="all, delete", lazy=True)
 

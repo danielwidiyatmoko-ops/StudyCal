@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from datetime import datetime
+from datetime import datetime, timezone
 from .. import db
 from ..models import Notification, Task
 
@@ -24,7 +24,7 @@ def get_notifications():
 def get_pending():
     uid      = int(get_jwt_identity())
     task_ids = [t.task_id for t in Task.query.filter_by(user_id=uid).all()]
-    now      = datetime.utcnow()
+    now      = datetime.now(timezone.utc).replace(tzinfo=None)
     notifs   = (Notification.query
                 .filter(
                     Notification.task_id.in_(task_ids),

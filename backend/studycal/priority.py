@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 def calculate_priority(weight_percent: float, due_date: datetime) -> float:
@@ -13,7 +13,9 @@ def calculate_priority(weight_percent: float, due_date: datetime) -> float:
 
     Ungraded tasks (weight_percent = 0) are driven purely by urgency.
     """
-    now        = datetime.utcnow()
+    now        = datetime.now(timezone.utc)
+    if due_date.tzinfo is None:
+        due_date = due_date.replace(tzinfo=timezone.utc)
     days_until = (due_date - now).total_seconds() / 86400
 
     if days_until <= 1:
