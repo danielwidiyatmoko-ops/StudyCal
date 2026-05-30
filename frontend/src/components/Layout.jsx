@@ -1,4 +1,4 @@
-import { Outlet, NavLink, useNavigate } from 'react-router-dom'
+import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useEffect, useState } from 'react'
 import api from '../lib/api'
@@ -22,7 +22,13 @@ export default function Layout() {
       Notification.requestPermission()
     }
   }, [])
-  
+  //Resets badge when user visits Alerts page
+  useEffect(() => {
+  if (location.pathname === '/alerts') {
+    setUnread(0)
+  }
+}, [location.pathname])
+
   // Poll for pending notifications every 60s
   useEffect(() => {
     const poll = async () => {
@@ -75,7 +81,9 @@ export default function Layout() {
               color: isActive ? 'var(--purple)' : 'var(--text-3)',
               background: isActive ? 'var(--purple-light)' : 'transparent',
               borderRight: isActive ? '2px solid var(--purple)' : '2px solid transparent',
-              transition: 'all .15s',
+              borderRightColor: isActive ? 'var(--purple)' : 'transparent',
+              transition: 'background .15s, color .15s, border-color .15s',
+              textDecoration:'none',
             })}>
               <span style={{ fontSize: 15 }}>{icon}</span>
               {label}
