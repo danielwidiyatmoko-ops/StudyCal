@@ -18,7 +18,7 @@ class User(db.Model):
             "user_id":    self.user_id,
             "name":       self.name,
             "email":      self.email,
-            "created_at": self.created_at.isoformat(),
+            "created_at": self.created_at.isoformat()+'Z',
         }
 
 
@@ -108,11 +108,11 @@ class Task(db.Model):
             "category":          cat.name if cat else None,
             "title":             self.title,
             "description":       self.description,
-            "due_date":          self.due_date.isoformat(),
+            "due_date":          self.due_date.isoformat() + 'Z',
             "estimated_minutes": self.estimated_minutes,
             "priority_score":    self.priority_score,
             "is_completed":      self.is_completed,
-            "created_at":        self.created_at.isoformat(),
+            "created_at":        self.created_at.isoformat() + 'Z',
         }
 
 
@@ -133,8 +133,8 @@ class Notification(db.Model):
             "task_title":      t.title              if t   else None,
             "course_name":     crs.course_name      if crs else None,
             "color_tag":       crs.color_tag        if crs else "#888",
-            "due_date":        t.due_date.isoformat() if t else None,
-            "notify_at":       self.notify_at.isoformat(),
+            "due_date":        t.due_date.isoformat() + 'Z' if t else None,
+            "notify_at":       self.notify_at.isoformat() + 'Z',
             "is_sent":         self.is_sent,
             "is_acknowledged": self.is_acknowledged,
             "priority_score":  t.priority_score     if t   else None,

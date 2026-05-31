@@ -14,7 +14,7 @@ export default function TaskModal({ task, onClose, onSaved }) {
     course_id:         task?.course_id         || '',
     rubric_id:         task?.rubric_id         || '',
     category_id:       task?.category_id       || '',
-    due_date:          task?.due_date ? task.due_date.slice(0, 16) : '',
+    due_date:          task?.due_date ? new Date(task.due_date).toLocaleDateString('sv') + 'T' + new Date(task.due_date).toLocaleTimeString('sv', { hour: '2-digit', minute: '2-digit' }): '',    
     estimated_minutes: task?.estimated_minutes || '',
     description:       task?.description       || '',
   })
